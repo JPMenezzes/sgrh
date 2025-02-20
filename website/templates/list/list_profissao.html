@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Listar Profissões{% endblock %}
+
+{% block content %}
+    <h1>Listar Profissões</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for profissao in profissoes %}
+            <tr>
+                <td>{{ profissao.id }}</td>
+                <td>{{ profissao.nome }}</td>
+                <td>{{ profissao.status }}</td>
+                <td>
+                    <a href="{{ url_for('views.editar_profissao', id=profissao.id) }}" class="btn btn-warning">Editar</a>
+                    <form action="{{ url_for('views.deletar_profissao', id=profissao.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esta profissão?')">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('views.cadastrar_profissao') }}" class="btn btn-primary">Cadastrar Nova Profissão</a>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar' if folha else 'Cadastrar' }} Pagamento{% endblock %}
+
+{% block content %}
+    <h1>{{ 'Editar' if folha else 'Cadastrar' }} Pagamento</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="pessoa">Pessoa</label>
+            <select class="form-control" id="pessoa" name="pessoa_id" required>
+                {% for pessoa in pessoas %}
+                    <option value="{{ pessoa.id }}" {% if folha and pessoa.id == folha.pessoa_id %}selected{% endif %}>
+                        {{ pessoa.nome }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="salario">Salário</label>
+            <input type="number" step="0.01" class="form-control" id="salario" name="salario"
+                   value="{{ folha.salario if folha else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="comissao">Comissão</label>
+            <input type="number" step="0.01" class="form-control" id="comissao" name="comissao"
+                   value="{{ folha.comissao if folha else '' }}">
+        </div>
+        <div class="form-group">
+            <label for="descontos">Descontos</label>
+            <input type="number" step="0.01" class="form-control" id="descontos" name="descontos"
+                   value="{{ folha.descontos if folha else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="gratificacoes">Gratificações</label>
+            <input type="number" step="0.01" class="form-control" id="gratificacoes" name="gratificacoes"
+                   value="{{ folha.gratificacoes if folha else '' }}">
+        </div>
+        <div class="form-group">
+            <label for="data_pagamento">Data de Pagamento</label>
+            <input type="date" class="form-control" id="data_pagamento" name="data_pagamento"
+                   value="{{ folha.data_pagamento if folha else '' }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+{% endblock %}

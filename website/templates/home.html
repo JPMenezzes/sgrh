@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Home - SGRH{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h1 class="display-4 mb-4">Bem-vindo ao Sistema de Gestão de Recursos Humanos (SGRH)</h1>
+                <p class="lead mb-5">
+                    Gerencie de forma eficiente as folhas de pagamento, registros de funcionários e muito mais.
+                    A plataforma foi desenvolvida para oferecer uma visão clara e precisa das informações vitais para a gestão do seu time.
+                </p>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h4 class="card-title">Profissões</h4>
+                                <p class="card-text">Consultar e cadastrar, editar e excluir Profissões!</p>
+                                <a href="{{ url_for('views.listar_profissao') }}" class="btn btn-primary">Visualizar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h4 class="card-title">Funcionários</h4>
+                                <p class="card-text">Consultar, cadastrar, editar e excluir Funcionários!</p>
+                                <a href="{{ url_for('views.listar_pessoa') }}" class="btn btn-primary">Visualizar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h4 class="card-title">Pagamento</h4>
+                                <p class="card-text">Consultar, cadastrar, editar e excluir Folhas de Pagamento!</p>
+                                <a href="{{ url_for('views.listar_folha_pagamento') }}" class="btn btn-primary">Visualizar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

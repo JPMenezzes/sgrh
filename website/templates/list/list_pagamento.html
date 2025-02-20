@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Listar Pagamentos{% endblock %}
+
+{% block content %}
+    <h1>Listar Pagamentos</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Pessoa</th>
+            <th>Profissao</th>
+            <th>Salário</th>
+            <th>Comissão</th>
+            <th>Descontos</th>
+            <th>Gratificações</th>
+            <th>Data de Pagamento</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pagamento in pagamentos %}
+            <tr>
+                <td>{{ pagamento.id }}</td>
+                <td>{{ pagamento.pessoa.nome }}</td>
+                <td>{{ pagamento.pessoa.profissao.nome }}</td>
+                <td>{{ pagamento.salario }}</td>
+                <td>{{ pagamento.comissao }}</td>
+                <td>{{ pagamento.descontos }}</td>
+                <td>{{ pagamento.gratificacoes }}</td>
+                <td>{{ pagamento.data_pagamento }}</td>
+                <td>
+                    <a href="{{ url_for('views.editar_folha_pagamento', id=pagamento.id) }}" class="btn btn-warning">Editar</a>
+                    <form action="{{ url_for('views.deletar_folha_pagamento', id=pagamento.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar esta folha de pagamento?')">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('views.cadastrar_folha_pagamento') }}" class="btn btn-primary">Cadastrar Novo Pagamento</a>
+{% endblock %}
